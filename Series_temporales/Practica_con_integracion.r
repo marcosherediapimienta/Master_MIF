@@ -13,6 +13,7 @@ library(ggplot2)
 library(urca)
 library(vars)
 
+
 df_bbva <- read.table("../Ficheros/BBVA.txt", header = TRUE)
 df_san <- read.table("../Ficheros/SAN.txt", header = TRUE)
 df_san2 <- read.table("../Ficheros/SAN2.txt", header = TRUE, sep = ",")
@@ -33,6 +34,8 @@ print(adf_test)
 adf_test <- adf.test(SAN_series)
 print(adf_test)
 
+# El fragmento de código que proporcionó ajusta un modelo ARIMA a los datos de series temporales de
+# los precios de las acciones de BBVA y SANTANDER.
 arima_model <- auto.arima(bbva_series)
 arima_model
 summary(arima_model)
@@ -54,6 +57,9 @@ plot(forecast_result, main = "Predicciones con modelo ARIMA")
 residuos <- resid(arima_model)
 
 # Realizar la prueba de Ljung-Box en los residuos
+# El fragmento de código que proporcionó realiza una prueba de Ljung-Box para la autocorrelación en
+# los residuos de un modelo de serie temporal. A continuación se muestra un desglose de lo que hace
+# cada parte del código:
 ljung_box_result <- Box.test(residuos, lag = 20, type = "Ljung-Box")
 cat("Prueba de Ljung-Box para autocorrelación en residuos:\n")
 print(ljung_box_result)
