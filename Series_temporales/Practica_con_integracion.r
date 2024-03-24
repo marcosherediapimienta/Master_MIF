@@ -60,6 +60,7 @@ residuos <- resid(arima_model)
 # El fragmento de código que proporcionó realiza una prueba de Ljung-Box para la autocorrelación en
 # los residuos de un modelo de serie temporal. A continuación se muestra un desglose de lo que hace
 # cada parte del código:
+
 ljung_box_result <- Box.test(residuos, lag = 20, type = "Ljung-Box")
 cat("Prueba de Ljung-Box para autocorrelación en residuos:\n")
 print(ljung_box_result)
