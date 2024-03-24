@@ -2,8 +2,7 @@ install.packages(c("tidyverse", "tseries", "forecast"))
 install.packages("TSA")
 install.packages("vars")
 if (!requireNamespace("gvlma", quietly = TRUE)) {
-  install.packages("gvlma")
-}
+  install.packages("gvlma")}
 
 library(tidyverse)
 library(tseries)
@@ -14,23 +13,25 @@ library(ggplot2)
 library(urca)
 library(vars)
 
-df_bbva <- read.table("./Ficheros/BBVA.txt", header = TRUE)
-df_san <- read.table("./Ficheros/SAN.txt", header = TRUE)
-df_san2 <- read.table("./Ficheros/SAN2.txt", header = TRUE, sep = ",")
-
+df_bbva <- read.table("../Ficheros/BBVA.txt", header = TRUE)
+df_san <- read.table("../Ficheros/SAN.txt", header = TRUE)
+df_san2 <- read.table("../Ficheros/SAN2.txt", header = TRUE, sep = ",")
 
 bbva_series <- ts(df_bbva$BBVA.Adjusted, frequency = 1)
+png("../Resultados/Cotizaciones_BBVA.png")
 plot(bbva_series, main = "Cotizaciones diarias del BBVA")
+dev.off()
 
 SAN_series <- ts(df_san$SAN.Adjusted, frequency = 1)
-plot(SAN_series, main = "Cotizaciones diarias del SANTANDER")
 
+png("../Resultados/SAN_series_plot.png")
+plot(SAN_series, main = "Cotizaciones diarias del SANTANDER")
+dev.off()
 
 adf_test <- adf.test(bbva_series)
 print(adf_test)
 adf_test <- adf.test(SAN_series)
 print(adf_test)
-
 
 arima_model <- auto.arima(bbva_series)
 arima_model
@@ -44,9 +45,7 @@ summary(arima_model)
 forecast_result <- forecast(arima_model, h = 8)  # 8 periodos de predicción
 forecast_result
 
-
 plot(forecast_result, main = "Predicciones con modelo ARIMA")
-
 
 #3
 
@@ -91,8 +90,6 @@ residuos_cuadrados <- residuos^2
 # Gráfico de Residuos al Cuadrado vs. Predicciones
 plot(residuos_cuadrados ~ fitted(arima_model), main="Gráfico de Residuos al Cuadrado vs. Predicciones", ylab="Residuos al Cuadrado")
 abline(h = mean(residuos_cuadrados), col = "red", lty = 2)  # Línea base para homocedasticidad
-
-
 
 #Test de Breusch-Pagan (homoscedasticidad)
 
@@ -152,9 +149,9 @@ ggplot(df, aes(x = Santander, y = BBVA)) +
 
 #5
 
-df_bbva <- read.table("BBVA.txt", header = TRUE)
-df_SAN <- read.table("SAN.txt", header=TRUE)
-df_SAN2 <- read.table("SAN2.txt", header = TRUE, sep = ",") 
+df_bbva <- read.table("../Ficheros/BBVA.txt", header = TRUE)
+df_SAN <- read.table("../Ficheros/SAN.txt", header=TRUE)
+df_SAN2 <- read.table("../Ficheros/SAN2.txt", header = TRUE, sep = ",") 
 
 bbva_series <- ts(df_bbva$BBVA.Adjusted, frequency = 1)
 san_series <- ts(df_SAN$SAN.Adjusted, frequency = 1)
@@ -216,8 +213,6 @@ ljung_box_result <- Box.test(residuos2, lag = 20, type = "Ljung-Box")
 # Mostrar el resultado
 cat("Prueba de Ljung-Box para autocorrelación en residuos:\n")
 print(ljung_box_result)
-
-
 
 #6
 
