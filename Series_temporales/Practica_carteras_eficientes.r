@@ -1,3 +1,4 @@
+# Este fragmento de código realiza las siguientes tareas:
 matriz_covarianzas <- matrix(c(2.1417, 1.2794, 0.9393, 2.1063, 0.115, 0.9938, 2.2096, 1.1006,
                                1.2794, 3.1324, 0.5047, 1.6056, 0.3173, 0.8958, 1.8004, 0.3141,
                                0.9393, 0.5047, 1.3242, 1.6572, 0.2843, 0.7843, 1.5458, 0.8931,
@@ -8,6 +9,8 @@ matriz_covarianzas <- matrix(c(2.1417, 1.2794, 0.9393, 2.1063, 0.115, 0.9938, 2.
                                1.1006, 0.3141, 0.8931, 1.9824, -0.0393, 0.7806, 1.5551, 1.9623), 
                              nrow = 8, byrow = TRUE)
 
+# Este fragmento de código realiza cálculos de optimización de cartera. Aquí hay un desglose de lo que
+# hace cada parte:
 inversa_covarianzas <- solve(matriz_covarianzas)
 print(inversa_covarianzas)
 
@@ -21,6 +24,8 @@ Wd <- inversa_covarianzas %*% z  / sum(inversa_covarianzas %*% z)
 print(Wd)
 
 
+# El fragmento de código que proporcionó realiza cálculos relacionados con la optimización de la
+# cartera. Aquí hay un desglose de lo que hace cada parte:
 # Calcular 1' * Σ^(-1) * 1
 suma_unos <- t(rep(1, length(z))) %*% inversa_covarianzas %*% rep(1, length(z))
 print(paste("1' * Σ^(-1) * 1:", suma_unos))
@@ -34,6 +39,9 @@ producto_mu_mu <- t(z) %*% inversa_covarianzas %*% z
 print(paste("μ' * Σ^(-1) * μ:", producto_mu_mu))
 
 
+# El fragmento de código que proporcionó calcula los rendimientos y las variaciones esperados para dos
+# carteras diferentes (wg y wd) en función de la matriz de covarianza proporcionada y un conjunto de
+# ponderaciones. A continuación se muestra un desglose de lo que hace cada parte del código:
 rendimiento_esperado_wd <-producto_mu_mu / producto_unos_mu
 rendimiento_esperado_wg <- producto_unos_mu / suma_unos
 varianza_wg <- 1 / suma_unos
@@ -46,6 +54,10 @@ print(paste("Varianza de la cartera wd:", varianza_wd))
 
 
 
+# Esta parte del código calcula el rendimiento esperado de una cartera denominada i_w^lambda, donde
+# lambda es un parámetro dado (en este caso, lambda = 0,7). El rendimiento esperado de i_w^lambda es
+# un promedio ponderado de los rendimientos esperados de dos carteras diferentes (wg y wd) según el
+# parámetro lambda.
 # Calcular el rendimiento esperado de i_w^lambda
 lambda <- 0.7
 rendimiento_esperado_i_w_lambda <- (1-lambda) * rendimiento_esperado_wg + lambda * rendimiento_esperado_wd
@@ -53,6 +65,8 @@ print(paste("Rendimiento esperado de i_w^lambda:", rendimiento_esperado_i_w_lamb
 
 
 
+# Esta parte del código realiza un análisis de descomposición de riesgos para una cartera. Aquí hay un
+# desglose de lo que hace:
 #Descomposición del riesgo
 
 z <- c(0.3041, 0.2488, 0.2257, 0.6158, 0.1372, 0.2445, 0.5979, 0.2222)
