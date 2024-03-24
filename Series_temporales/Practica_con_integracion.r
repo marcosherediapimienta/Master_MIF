@@ -18,13 +18,13 @@ df_san <- read.table("../Ficheros/SAN.txt", header = TRUE)
 df_san2 <- read.table("../Ficheros/SAN2.txt", header = TRUE, sep = ",")
 
 bbva_series <- ts(df_bbva$BBVA.Adjusted, frequency = 1)
-png("../Resultados/Cotizaciones_BBVA.png")
+png("../Resultados/Practica_con_integracion/Cotizaciones_BBVA.png")
 plot(bbva_series, main = "Cotizaciones diarias del BBVA")
 dev.off()
 
 SAN_series <- ts(df_san$SAN.Adjusted, frequency = 1)
 
-png("../Resultados/SAN_series_plot.png")
+png("../Resultados/Practica_con_integracion/SAN_series_plot.png")
 plot(SAN_series, main = "Cotizaciones diarias del SANTANDER")
 dev.off()
 
