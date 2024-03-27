@@ -6,6 +6,10 @@ d <- 0.98  # Factor de disminución
 S0 <- 20   # Precio inicial de la acción en euros
 N <- 3     # Número de pasos de tiempo
 
+# El fragmento de código que proporcionó calcula la probabilidad neutral al riesgo para un modelo
+# binomial. En la teoría de la valoración de opciones, la probabilidad neutral al riesgo es la medida
+# de probabilidad según la cual el rendimiento esperado de cada activo es la tasa libre de riesgo.
+
 # (a) Compute the risk neutral probability
 
 # Calcular la probabilidad neutral al riesgo (p)
@@ -14,6 +18,10 @@ q <- 1 - p
 cat("La probabilidad neutral al riesgo es:", p, "\n")
 
 
+
+# El fragmento de código que proporcionó está construyendo un árbol binomial para representar los
+# posibles precios de las acciones en cada nodo en un modelo binomial. A continuación se muestra un
+# desglose de lo que hace cada parte del código:
 
 # (b) Construct the binomial tree for Sn.
 
@@ -36,6 +44,8 @@ payoffs <- resultados_S4 - S0
 print(payoffs)
 
 
+# El fragmento de código que proporcionó calcula las probabilidades de resultados específicos (valores
+# X) para S3 en un modelo binomial. A continuación se muestra un desglose de lo que hace el código:
 
 # (c) Compute the probabilities of S3. Check that their sum is 1.
 
@@ -65,6 +75,10 @@ total_prob <- sum(prob_X_382, prob_X_202, prob_X_036, prob_X_0)
 cat("La suma total de las probabilidades es:", total_prob, "\n")
 
 
+
+# Esta parte del código realiza una recursividad hacia atrás para determinar los valores de las
+# opciones en diferentes pasos de tiempo (V3, V2, V1, V0) en función de los pagos calculados para
+# diferentes resultados posibles en el paso de tiempo final (S3).
 
 #(d) Compute V3= (S3 - 20)+, and make a backward recursion in order to determine V3; V2; V1; V0
 
@@ -98,6 +112,9 @@ cat("V0.1:", V0.1, "\n")
 
 
 
+# Esta parte del código calcula el precio de una opción de compra utilizando la fórmula de fijación de
+# precios neutral al riesgo. Aquí hay un desglose de lo que hace:
+
 # (e) First check of V0: Compute (1 + r)^-N*E[(SN - K)+]:
 
 # Calcular el valor esperado de X
@@ -111,6 +128,12 @@ V0 <- ((1+0.04)^-3) * E_X
 cat("El precio de la opción call es:", V0)
 
 
+
+# Este fragmento de código calcula la cartera replicante para un conjunto determinado de precios de
+# acciones (S0, S1, S2, S3) y valores de opciones (V1.1, V1.2, V2.1, V2.2, V3.2, V3. 3) en diferentes
+# pasos de tiempo (T = 0, 1, 2, 3) en un modelo binomial. La cartera replicante consiste en mantener
+# una cierta cantidad de acciones subyacentes (indicada por H) y pedir prestada o prestada una cierta
+# cantidad de dinero (indicada por D) para replicar el pago de la opción en cada paso de tiempo.
 
 #(g) Compute the replicating portfolio assuming the following values of Sn:
 
