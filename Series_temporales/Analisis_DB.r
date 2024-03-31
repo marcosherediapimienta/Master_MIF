@@ -21,3 +21,22 @@ df_dbk_diario <- na.omit(df_dbk_diario)
 df_dax_diario
 df_dbk_diario
 
+#Inspeccionamos los datos
+dim(df_dbk_diario)  #(row = sample size, col = variables)
+head(df_dbk_diario) # primeras 6 filas
+tail(df_dbk_diario) # ultimas 6 filas
+
+dim(df_dax_diario)  #(row = sample size, col = variables)
+head(df_dax_diario) # primeras 6 filas
+tail(df_dax_diario) # ultimas 6 filas
+
+# Esta parte del código calcula los rendimientos logarítmicos de los precios de las acciones del
+# índice DAX (^GDAXI) y del Deutsche Bank (DBK.DE).
+# Calcular los log-returns para el DAX
+log_returns_dax <- diff(log(df_dax_diario$GDAXI.Adjusted))
+
+# Calcular los log-returns para Deutsche Bank
+log_returns_dbk <- diff(log(df_dbk_diario$DBK.DE.Adjusted))
+
+head(log_returns_dax)
+head(log_returns_dbk)
