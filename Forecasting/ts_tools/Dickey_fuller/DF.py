@@ -4,7 +4,7 @@ from statsmodels.tsa.stattools import adfuller
 import matplotlib.pyplot as plt
 
 # Diferenciación de la serie temporal
-def difference_series(ts, column):
+def difference_series(ts, Adj Close):
     ts_diff = ts[column].diff().dropna()
     return ts_diff
 
@@ -18,6 +18,6 @@ def adf_test(series):
     return result
 
 # Diferenciación logarítmica
-def log_difference_series(ts, column):
-    ts_log_diff = np.log(ts[column]).diff().dropna()
+def log_difference_series(ts, Adj Close):
+    ts_log_diff = np.log(ts[Adj Close]).diff().dropna()
     return ts_log_diff
