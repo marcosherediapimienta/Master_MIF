@@ -2,7 +2,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
-class MyARIMA:
+class ARIMA:
     sc_in = MinMaxScaler(feature_range=(0, 1))
     sc_out = MinMaxScaler(feature_range=(0, 1))
 
