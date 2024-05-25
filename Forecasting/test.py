@@ -11,3 +11,6 @@ ts_tools = tools()
 ts = ts_tools.ts_prepartion(ts, 'Date', 'Adj Close')
 ts_tools.plot(ts)
 
+
+
+
