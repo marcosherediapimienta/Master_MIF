@@ -4,9 +4,12 @@ from statsmodels.tsa.stattools import adfuller
 import matplotlib.pyplot as plt
 
 # Diferenciación de la serie temporal
-def difference_series(ts, Adj Close):
-    ts_diff = ts[column].diff().dropna()
-    return ts_diff
+def difference_series(ts, column_ds, column_y):
+    ts_func = ts.copy()
+    columna_diff = ts_func[column_y].diff().dropna()
+    ts_func = pd.merge(ts_func, columna_diff, left_index=True, right_index=True)
+    ts_func = ts_func[[column_ds, 'y_y']].rename(columns={'y_y': 'y'})
+    return ts_func
 
 # Aplicar test de Dickey-Fuller
 def adf_test(series):
@@ -18,6 +21,6 @@ def adf_test(series):
     return result
 
 # Diferenciación logarítmica
-def log_difference_series(ts, Adj Close):
-    ts_log_diff = np.log(ts[Adj Close]).diff().dropna()
+def log_difference_series(ts, column):
+    ts_log_diff = np.log(ts[column]).diff().dropna()
     return ts_log_diff
